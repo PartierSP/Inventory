@@ -1,0 +1,5 @@
+<?php
+
+	$debug=false;
+
+?>

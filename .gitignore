@@ -1,0 +1,5 @@
+# Database credentials
+inc_dbconnect.php
+
+# Smarty cache files
+/templates_c/*.php
