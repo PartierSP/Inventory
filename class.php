@@ -1,14 +1,12 @@
 <?php
 
 include 'inc_header.php';
-
+$dl->debug=true;
 $id=gRequest('id',0);
 
-$sql='SELECT t1.featid as featid, t1.feature as feature, t2.categid as categid '
-	.'FROM featlist as t2 '
-	.'LEFT JOIN features as t1 '
-	.'ON t2.featid=t1.featid '
-	.'WHERE t2.categid='.$id;
+$sql='SELECT `featid`, `feature`, `catid` '
+	.'FROM `features` '
+	.'WHERE `catid`='.$id;
 $data=$dl->sql($sql);
 
 foreach($data as $d_row){
@@ -18,11 +16,12 @@ foreach($data as $d_row){
 	$specs[$d_row['featid']]=$data_specs;
 }
 
-$sql='SELECT * FROM `item` WHERE `type`='.$id;
+$sql='SELECT * FROM `item` WHERE `catid`='.$id;
 $itemlist=$dl->sql($sql);
 
 $smarty->assign('data',$data);
 $smarty->assign('specs',$specs);
 $smarty->assign('itemlist',$itemlist);
+$smarty->assign('ilcount', count($itemlist));
 $smarty->display('class.tpl');
 ?>
