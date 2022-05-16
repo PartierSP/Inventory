@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 <h3>Categories</h3>
-<div class="w3-centered w3-card-4 w3-white">
+<div class="w3-centered w3-card-4 w3-white w3-padding">
 <ul id="CatUL">
 {foreach $data as $row name=mainloop}
 <li>

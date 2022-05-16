@@ -1,7 +1,7 @@
 <?php
 
 include 'inc_header.php';
-$dl->debug=true;
+
 $mode=gRequest('mode',0);
 $parent=gRequest('parent',0);
 $cat=gRequest('cat',"");
