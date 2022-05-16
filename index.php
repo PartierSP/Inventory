@@ -1,9 +1,21 @@
 <?php
 
 include 'inc_header.php';
+$dl->debug=true;
+$mode=gRequest('mode',0);
+$parent=gRequest('parent',0);
+$cat=gRequest('cat',"");
+
+if($mode==1){
+	if($cat>""){
+		$insert=array('cat'=>$cat,'parent'=>$parent);
+		$dl->insert('category',$insert);
+	}
+}
 
 $tree=getchildren(0, $dbserver, $dbusername, $dbpasswd, $dbname, $debug);
 
+$smarty->assign('mode', $mode);
 $smarty->assign('data', $tree);
 $smarty->display('index.tpl');
 

@@ -10,7 +10,7 @@
 	<h4>Main</h4>
 	<a href="index.php" class="w3-bar-item w3-button">Home</a>
 	<h4>Administration</h4>
-	<span class="w3-bar-item w3-button">Categories</span>
+	<a href="index.php?mode=1" class="w3-bar-item w3-button">Categories</a>
 	<span class="w3-bar-item w3-button">Features</span>
 	<span class="w3-bar-item w3-button">Items</span>
 </div>

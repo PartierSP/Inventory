@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-<h3>Class</h3>
+<h3>{foreach $crumbs|@array_reverse:true as $row name=crumbs}{$row.cat}{if $smarty.foreach.crumbs.last}{else} - {/if}{/foreach}</h3>
 <div class='w3-card-4 w3-white w3-padding'>
 <table class='w3-table-all'>
 <tr>
@@ -28,7 +28,7 @@
 <tr>
 	<td>{$row.description}</td>
 	{foreach $data as $d_row}
-		<td></td>
+		<td>{$row[$d_row.feature]}</td>
 	{/foreach}
 	<td>{$row.qty}</td>
 	<td>{$row.location}</td>

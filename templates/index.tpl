@@ -3,8 +3,30 @@
 <div class="w3-centered w3-card-4 w3-white">
 <ul id="CatUL">
 {foreach $data as $row name=mainloop}
-<li>{if $row.children[0].catid>0}<span class="caret">{/if}{$row.cat}{if $row.children[0].catid>0}</span><ul class="nested">{include file="child.tpl" data=$row.children}</ul>{/if}</li>
-{/foreach}
+<li>
+	{if ($row.children[0].catid>0) or ($mode eq 1)}
+		<span class="caret"></span>
+	{/if}
+	{if ($row.children[0].catid<1) and ($mode eq 1)}
+		<a href="feature.php?catid={$row.catid}">
+	{/if}
+	{$row.cat}
+	{if ($row.children[0].catid<1) and ($mode eq 1)}
+		</a>
+	{/if}
+	{if ($row.children[0].catid>0) or ($mode eq 1)}
+		<ul class="nested">
+		{if $mode eq 1}
+			<form method="get">&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="parent" value="{$row.catid}"><input type="hidden" name="mode" value="1"><input type="text" name="cat"><input type="submit" value="New"></form>
+		{/if}
+		{if $row.children[0].catid>0}
+			{include file="child.tpl" data=$row.children mode=$mode}
+		{/if}
+		</ul>
+	{/if}
+</li>
+{/foreach}{if $mode eq 1}<li><form method="get"><input type="hidden" name="parent" value="0"><input type="hidden" name="mode" value="1"><input type="text"  name="cat"><input type="submit" value="New"></form></li>{/if}
+
 </ul>
 </div>
 
