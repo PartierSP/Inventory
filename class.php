@@ -41,5 +41,6 @@ $smarty->assign('specs',$specs);
 $smarty->assign('itemlist',$itemlist);
 $smarty->assign('ilcount', count($itemlist));
 $smarty->assign('crumbs',$crumbs);
+$smarty->assign('id',$id);
 $smarty->display('class.tpl');
 ?>
