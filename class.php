@@ -16,16 +16,21 @@ foreach($data as $d_row){
 	$specs[$d_row['featid']]=$data_specs;
 }
 
-$sql='SELECT t0.`itemid` AS `itemid`, t0.`description` AS `description`, t0.`catid` AS `catid`, t0.`qty` AS `qty`, t0.`location` AS `location`, t0.`bin` AS `bin` ';
-$from=' FROM `item` AS t0 ';
-foreach($data as $d_row){
-	$select=$select.', ts'.$d_row['featid'].'.`spec` AS `'.$d_row['feature'].'`';
-	$from=$from . ' LEFT JOIN `itmspec` AS t'.$d_row['featid'].' ON t0.itemid=t'.$d_row['featid'].'.itemid '
-			. ' LEFT JOIN `specs` AS ts'.$d_row['featid'].' ON t'.$d_row['featid'].'.specid=ts'.$d_row['featid'].'.specid ';
-	$where=$where . ' AND ts'.$d_row['featid'].'.featid='.$d_row['featid'].' ';
+$sql='SELECT `itemid`, `description`, `catid`, `qty`, `location`, `bin` FROM `item` WHERE `catid`='.$id;
+$list=$dl->sql($sql);
+
+$i=0;
+foreach($list as $row){
+	foreach($data as $d_row){
+		$sql='SELECT t1.itemid AS itemid, t1.specid AS specid, t2.spec AS spec '
+			.'FROM itmspec AS t1 '
+			.'LEFT JOIN specs AS t2 ON t1.specid=t2.specid '
+			.'WHERE itemid='.$row['itemid'].' AND t2.featid='.$d_row['featid'];
+		$spec=$dl->sql($sql);
+		$itemlist[$i][$d_row['featid']]=$spec[0];
+	}
+	$i++;
 }
-$sql=$sql.$select.$from.'WHERE `catid`='.$id.$where;
-$itemlist=$dl->sql($sql);
 
 $lastid=$id;
 do{
@@ -38,6 +43,7 @@ do{
 
 $smarty->assign('data',$data);
 $smarty->assign('specs',$specs);
+$smarty->assign('list',$list);
 $smarty->assign('itemlist',$itemlist);
 $smarty->assign('ilcount', count($itemlist));
 $smarty->assign('crumbs',$crumbs);

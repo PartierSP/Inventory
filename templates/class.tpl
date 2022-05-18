@@ -24,11 +24,11 @@
 	<th>Location</th>
 	<th>Bin</th>
 </tr>
-{foreach $itemlist as $row}
+{foreach $list as $row name=listloop}
 <tr>
 	<td>{$row.description}</td>
 	{foreach $data as $d_row}
-		<td>{$row[$d_row.feature]}</td>
+		<td>{$itemlist[$smarty.foreach.listloop.index][$d_row.featid]['spec']}</td>
 	{/foreach}
 	<td>{$row.qty}</td>
 	<td>{$row.location}</td>
