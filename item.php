@@ -14,8 +14,15 @@ if($new==1){
 	$desc=gRequest('description',"");
 	$qty=gRequest('qty',0);
 	$bin=gRequest('bin',"");
+	$location=gRequest('location',0);
+	$newloc=gRequest('newlocation',"");
 	
-	$insertarray=array('description'=>$desc,'catid'=>$catid,'qty'=>$qty,'bin'=>$bin);
+	if(($location==0) and ($newloc>"")){
+		$insertarray=array('location'=>$newloc);
+		$location=$dl->insert('location',$insertarray);
+	}
+	
+	$insertarray=array('description'=>$desc,'catid'=>$catid,'qty'=>$qty,'location'=>$location,'bin'=>$bin);
 	$newitemid=$dl->insert('item',$insertarray);
 	
 	foreach($data as $d_row){
@@ -39,6 +46,9 @@ foreach($data as $d_row){
 	$specs[$d_row['featid']]=$data_specs;
 }
 
+$sql='SELECT * FROM location';
+$locations=$dl->sql($sql);
+
 $lastid=$catid;
 do{
 	$sql='SELECT * FROM `category` WHERE `catid`='.$lastid;
@@ -49,6 +59,7 @@ do{
 
 $smarty->assign('data',$data);
 $smarty->assign('specs',$specs);
+$smarty->assign('locations',$locations);
 $smarty->assign('crumbs',$crumbs);
 $smarty->assign('catid',$catid);
 $smarty->display('item.tpl');

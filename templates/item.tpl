@@ -29,7 +29,14 @@
 <tr>
 	<td><input type="text" name="description" class="w3-input"></td>
 	<td><input type="number" name="qty" class="w3-input"></td>
-	<td><input type="text" name="newlocation" class="w3-input"></td>
+	<td><select class="w3-select" name="location">
+		<option value="" selected>---</option>
+	{foreach $locations as $s_row}
+		<option value="{$s_row.locid}">{$s_row.location}</option>
+	{/foreach}
+	</select>
+	<input type="text" name="newlocation" class="w3-input">
+	</td>
 	<td><input type="text" name="bin" class="w3-input"></td>
 </tr>
 </table>

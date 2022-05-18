@@ -16,7 +16,10 @@ foreach($data as $d_row){
 	$specs[$d_row['featid']]=$data_specs;
 }
 
-$sql='SELECT `itemid`, `description`, `catid`, `qty`, `location`, `bin` FROM `item` WHERE `catid`='.$id;
+$sql='SELECT t1.`itemid` AS `itemid`, t1.`description` AS `description`, t1.`catid` AS `catid`, t1.`qty` AS `qty`, t2.`location` AS `location`, t1.`bin` AS `bin` '
+	.'FROM `item` AS t1 '
+	.'LEFT JOIN `location` AS t2 ON t1.`location`=t2.`locid` '
+	.'WHERE `catid`='.$id;
 $list=$dl->sql($sql);
 
 $i=0;
