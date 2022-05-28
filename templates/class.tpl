@@ -2,17 +2,20 @@
 
 <h3>{foreach $crumbs|@array_reverse:true as $row name=crumbs}{$row.cat}{if $smarty.foreach.crumbs.last}{else} - {/if}{/foreach}</h3>
 <div class='w3-card-4 w3-white w3-padding'>
+<form method="get"><input type="hidden" name="id" value="{$id}">
 <table class='w3-table-all'>
 <tr>
 {foreach $data as $row}
 	<td><b>{$row.feature}</b><br>
 	{foreach $specs[$row.featid] as $s_row}
-		<br>{$s_row.spec}
+		<br><input type="checkbox" id="cb{$s_row.specid}" name="cb{$s_row.specid}" value="1"><lable for="cb{$s_row.specid}">{$s_row.spec}</lable>
 	{/foreach}
 	</td>
 {/foreach}
 </tr>
 </table>
+<p><button type="submit" class="w3-button w3-blue">Update List</button></p>
+</form>
 <p>{$ilcount} items found.</p>
 <table class='w3-table-all'>
 <tr>

@@ -1,7 +1,7 @@
 <?php
 
 include 'inc_header.php';
-//$dl->debug=true;
+
 $id=gRequest('id',0);
 
 $sql='SELECT `featid`, `feature`, `catid` '
@@ -19,7 +19,41 @@ foreach($data as $d_row){
 $sql='SELECT t1.`itemid` AS `itemid`, t1.`description` AS `description`, t1.`catid` AS `catid`, t1.`qty` AS `qty`, t2.`location` AS `location`, t1.`bin` AS `bin` '
 	.'FROM `item` AS t1 '
 	.'LEFT JOIN `location` AS t2 ON t1.`location`=t2.`locid` '
-	.'WHERE `catid`='.$id;
+	.'WHERE ';
+
+$filter='';
+foreach($data as $d_row){
+	foreach($specs[$d_row['featid']] as $row){
+		$fltr=gRequest('cb'.$row['specid'],0);
+		if ($fltr>0){
+			if($filter<>''){
+				$filter.=' OR ';
+			}
+			$filter.='`specid`='.$row['specid'];
+		}
+	}
+}
+if($filter==''){
+	$sql.='`catid`='.$id. ' GROUP BY `itemid`';
+} else {
+	$sql.='`itemid` IN (SELECT `itemid` '
+	.'FROM ('
+		.'SELECT `itemid`, COUNT(`itemid`) AS `cnt` '
+		.'FROM `itmspec` ' 
+		.'WHERE ('.$filter.') '
+		.'GROUP BY `itemid`'
+	.') AS t4 '
+	.'WHERE `cnt`= ('
+		.'SELECT COUNT(`cnt`) AS `cnt` '
+		.'FROM ('
+			.'SELECT COUNT(`featid`) AS `cnt` '
+			.'FROM `specs` '
+			.'WHERE '.$filter.' ' 
+			.'GROUP BY `featid`'
+		.') AS t5'
+	.'))';
+}
+
 $list=$dl->sql($sql);
 
 $i=0;
