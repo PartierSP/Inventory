@@ -6,7 +6,7 @@ $catid=gRequest('catid',0);
 $new=gRequest('n',0);
 $itemid=gRequest('itemid',0);
 
-$sql='SELECT `featid`, `feature`, `catid` '
+$sql='SELECT `featid`, `feature`, `catid`, 0 AS `selected` '
 	.'FROM `features` '
 	.'WHERE `catid`='.$catid;
 $data=$dl->sql($sql);
@@ -41,7 +41,7 @@ if($new==1){
 }
 
 foreach($data as $d_row){
-	$sql='SELECT `specid`, `spec`, `featid` FROM `specs` WHERE `featid`='.$d_row['featid'];
+	$sql='SELECT `specid`, `spec`, `featid` FROM `specs` WHERE `featid`='.$d_row['featid'].' ORDER BY `spec`';
 	$data_specs=$dl->sql($sql);
 	
 	$specs[$d_row['featid']]=$data_specs;
@@ -66,14 +66,18 @@ if($itemid>0){
 	
 	foreach($data as $d_row){
 		$sql='SELECT t1.`ifid` AS `ifid`, t1.`itemid` AS `itemid`, t1.`specid` AS `specid` '
-		       .'FROM `itmspec` AS t1 '
-		       .'LEFT JOIN `specs` AS t2 ON t1.`specid`=t2.`specid` '
-		       .'WHERE t2.`featid`='.$d_row['featid'] . ' AND `itemid`='.$itemid;
-		$thingy=$dl->sql($sql);
-		//FIXME: Not done here
+			.'FROM `itmspec` AS t1 '
+			.'LEFT JOIN `specs` AS t2 ON t1.`specid`=t2.`specid` '
+			.'WHERE t2.`featid`='.$d_row['featid'] . ' AND `itemid`='.$itemid;
+		$t=$dl->sql($sql);
+		$data2[]=array('featid'=>$d_row['featid'],
+			'feature'=>$d_row['feature'],
+			'catid'=>$d_row['catid'],
+			'selected'=>$t[0]['specid']);
 	}
+	$data=$data2;
 }
-
+//print_r($data);
 $smarty->assign('data',$data);
 $smarty->assign('specs',$specs);
 $smarty->assign('locations',$locations);

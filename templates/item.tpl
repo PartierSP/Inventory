@@ -11,10 +11,10 @@
 </tr>
 <tr>
 {foreach $data as $row}
-	<td><select class="w3-select" name="feat{$row.featid}">
-		<option value="" selected>---</option>
+	<td><select class="w3-select" name="feat{$row.featid}" id="feat{$row.featid}">
+			<option value=""{if $row.selected eq 0} selected{/if}>---</option>
 	{foreach $specs[$row.featid] as $s_row}
-		<option value="{$s_row.specid}">{$s_row.spec}</option>
+		<option value="{$s_row.specid}"{if $row.selected eq $s_row.specid} selected{/if}>{$s_row.spec}</option>
 	{/foreach}
 	</select>
 	<input type="text" name="nsp{$row.featid}" class="w3-input">
