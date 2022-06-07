@@ -8,7 +8,7 @@
 {foreach $data as $row}
 	<td><b>{$row.feature}</b><br>
 	{foreach $specs[$row.featid] as $s_row}
-		<br><input type="checkbox" id="cb{$s_row.specid}" name="cb{$s_row.specid}" value="1"><lable for="cb{$s_row.specid}">{$s_row.spec}</lable>
+		<br><input type="checkbox" id="cb{$s_row.specid}" name="cb{$s_row.specid}" value="1"{if $cbv[$s_row.specid] > 0} checked{/if}><lable for="cb{$s_row.specid}">{$s_row.spec}</lable>
 	{/foreach}
 	</td>
 {/foreach}
@@ -29,7 +29,7 @@
 </tr>
 {foreach $list as $row name=listloop}
 <tr>
-	<td>{$row.description}</td>
+	<td><a href="item.php?catid={$row.catid}&itemid={$row.itemid}">*</a> {$row.description}</td>
 	{foreach $data as $d_row}
 		<td>{$itemlist[$smarty.foreach.listloop.index][$d_row.featid]['spec']}</td>
 	{/foreach}

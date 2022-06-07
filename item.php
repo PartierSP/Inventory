@@ -4,6 +4,7 @@ include 'inc_header.php';
 //$dl->debug=true;
 $catid=gRequest('catid',0);
 $new=gRequest('n',0);
+$itemid=gRequest('itemid',0);
 
 $sql='SELECT `featid`, `feature`, `catid` '
 	.'FROM `features` '
@@ -57,10 +58,28 @@ do{
 	$lastid=$crumb[0]['parent'];
 }while ($lastid>0);
 
+if($itemid>0){
+	$sql='SELECT `itemid`, `description`, `catid`, `qty`, `location`, `bin` '
+		.'FROM `item` '
+		.'WHERE `itemid`='.$itemid;
+	$item=$dl->sql($sql);
+	
+	foreach($data as $d_row){
+		$sql='SELECT t1.`ifid` AS `ifid`, t1.`itemid` AS `itemid`, t1.`specid` AS `specid` '
+		       .'FROM `itmspec` AS t1 '
+		       .'LEFT JOIN `specs` AS t2 ON t1.`specid`=t2.`specid` '
+		       .'WHERE t2.`featid`='.$d_row['featid'] . ' AND `itemid`='.$itemid;
+		$thingy=$dl->sql($sql);
+		//FIXME: Not done here
+	}
+}
+
 $smarty->assign('data',$data);
 $smarty->assign('specs',$specs);
 $smarty->assign('locations',$locations);
 $smarty->assign('crumbs',$crumbs);
 $smarty->assign('catid',$catid);
+$smarty->assign('itemid',$itemid);
+$smarty->assign('item',$item[0]);
 $smarty->display('item.tpl');
 ?>

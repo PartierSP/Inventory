@@ -25,6 +25,7 @@ $filter='';
 foreach($data as $d_row){
 	foreach($specs[$d_row['featid']] as $row){
 		$fltr=gRequest('cb'.$row['specid'],0);
+		$cbv[$row['specid']]=$fltr;
 		if ($fltr>0){
 			if($filter<>''){
 				$filter.=' OR ';
@@ -77,13 +78,13 @@ do{
 	$lastid=$crumb[0]['parent'];
 }while ($lastid>0);
 
-
 $smarty->assign('data',$data);
 $smarty->assign('specs',$specs);
 $smarty->assign('list',$list);
 $smarty->assign('itemlist',$itemlist);
 $smarty->assign('ilcount', count($itemlist));
 $smarty->assign('crumbs',$crumbs);
+$smarty->assign('cbv', $cbv);
 $smarty->assign('id',$id);
 $smarty->display('class.tpl');
 ?>

@@ -27,8 +27,8 @@
 	<th>Discription</th><th>Qty</th><th>Location</th><th>Bin</th>
 </tr>
 <tr>
-	<td><input type="text" name="description" class="w3-input"></td>
-	<td><input type="number" name="qty" class="w3-input"></td>
+	<td><input type="text" name="description" class="w3-input" value="{$item.description}"></td>
+	<td><input type="number" name="qty" class="w3-input" value="{$item.qty}"></td>
 	<td><select class="w3-select" name="location">
 		<option value="" selected>---</option>
 	{foreach $locations as $s_row}
@@ -37,11 +37,11 @@
 	</select>
 	<input type="text" name="newlocation" class="w3-input">
 	</td>
-	<td><input type="text" name="bin" class="w3-input"></td>
+	<td><input type="text" name="bin" class="w3-input" value="{$item.bin}"></td>
 </tr>
 </table>
 <p>
-<button type="submit" class="w3-button w3-blue w3-round">Add New Item</button>
+<button type="submit" class="w3-button w3-blue w3-round">{if $itemid>0}Update{else}Add New{/if} Item</button>
 </p>
 </form>
 </div>
