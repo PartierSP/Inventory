@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 	<link rel="stylesheet" href="w3.css">
 	<link rel="stylesheet" href="list.css">
