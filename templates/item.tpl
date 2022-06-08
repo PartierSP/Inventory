@@ -41,6 +41,8 @@
 </tr>
 </table>
 <p>
+{if $itemid>0}<input type="hidden" name="itemid" value="{$itemid}">
+<input type="hidden" name="new" value="1">{/if}
 <button type="submit" class="w3-button w3-blue w3-round">{if $itemid>0}Update{else}Add New{/if} Item</button>
 </p>
 </form>

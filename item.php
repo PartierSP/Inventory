@@ -24,7 +24,17 @@ if($new==1){
 	}
 	
 	$insertarray=array('description'=>$desc,'catid'=>$catid,'qty'=>$qty,'location'=>$location,'bin'=>$bin);
-	$newitemid=$dl->insert('item',$insertarray);
+	if($itemid==0){
+		$newitemid=$dl->insert('item',$insertarray);
+	}else{
+		$t=$dl->update('item',$insertarray,'itemid='.$itemid);
+		$newitemid=$itemid;
+		
+		//FIXME: itmspec does not have a featid column to link back with.  So currently easier to delete
+		//       and rebuild everything for this item.
+		$sql='DELETE FROM `itmspec` WHERE `itemid`='.$itemid;
+		$t=$dl->sql($sql);
+	}
 	
 	foreach($data as $d_row){
 		$feat[$d_row['featid']]=gRequest('feat'.$d_row['featid'],0);
