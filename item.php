@@ -14,7 +14,7 @@ $data=$dl->sql($sql);
 if($new==1){
 	$desc=gRequest('description',"");
 	$qty=gRequest('qty',0);
-	$bin=gRequest('bin',"");
+	$bin=gRequest('bin',0);
 	$location=gRequest('location',0);
 	$newloc=gRequest('newlocation',"");
 	
@@ -23,7 +23,7 @@ if($new==1){
 		$location=$dl->insert('location',$insertarray);
 	}
 	
-	$insertarray=array('description'=>$desc,'catid'=>$catid,'qty'=>$qty,'location'=>$location,'bin'=>$bin);
+	$insertarray=array('description'=>$desc,'catid'=>$catid,'qty'=>$qty,'location'=>$location,'bin'=>intval($bin));
 	if($itemid==0){
 		$newitemid=$dl->insert('item',$insertarray);
 	}else{
