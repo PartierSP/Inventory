@@ -86,6 +86,13 @@ if($itemid>0){
 			'selected'=>$t[0]['specid']);
 	}
 	$data=$data2;
+	
+	foreach($locations as $d_row){
+		$data3[]=array('locid'=>$d_row['locid'],
+			'location'=>$d_row['location'],
+			'selected'=>$item[0]['location']);
+	}
+	$locations=$data3;
 }
 //print_r($data);
 $smarty->assign('data',$data);

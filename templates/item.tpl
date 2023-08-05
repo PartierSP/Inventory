@@ -24,20 +24,20 @@
 </table>
 <table class='w3-table-all'>
 <tr>
-	<th>Discription</th><th>Qty</th><th>Location</th><th>Bin</th>
+	<th>Discription</th><th>Qty</th><th>Location</th><th>Bin #</th>
 </tr>
 <tr>
 	<td><input type="text" name="description" class="w3-input" value="{$item.description}"></td>
 	<td><input type="number" name="qty" class="w3-input" value="{$item.qty}"></td>
 	<td><select class="w3-select" name="location">
-		<option value="" selected>---</option>
+		<option value="" {if $item.location eq 0} selected{/if}>---</option>
 	{foreach $locations as $s_row}
-		<option value="{$s_row.locid}">{$s_row.location}</option>
+		<option value="{$s_row.locid}"{if $s_row.selected eq $s_row.locid} selected{/if}>{$s_row.location}</option>
 	{/foreach}
 	</select>
 	<input type="text" name="newlocation" class="w3-input">
 	</td>
-	<td><input type="text" name="bin" class="w3-input" value="{$item.bin}"></td>
+	<td><input type="number" name="bin" class="w3-input" value="{$item.bin}"></td>
 </tr>
 </table>
 <p>
