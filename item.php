@@ -41,6 +41,9 @@ if($new==1){
 		$nsp[$d_row['featid']]=gRequest('nsp'.$d_row['featid'],"");
 		
 		if(($feat[$d_row['featid']]==0) AND ($nsp[$d_row['featid']]>"")){
+			//FIXME: should check to see if $nsp[$d_row['featid']] is a duplicate of an existing
+			//       spec, then skip the following insert but set $feat[$d_row['featid']] to the
+			//       existing specid instead.
 			$insertarray=array('spec'=>$nsp[$d_row['featid']],'featid'=>$d_row['featid']);
 			$feat[$d_row['featid']]=$dl->insert('specs',$insertarray);
 		}
@@ -94,7 +97,7 @@ if($itemid>0){
 	}
 	$locations=$data3;
 }
-//print_r($data);
+
 $smarty->assign('data',$data);
 $smarty->assign('specs',$specs);
 $smarty->assign('locations',$locations);

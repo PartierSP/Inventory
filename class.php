@@ -1,4 +1,5 @@
 <?php
+//RESEARCH: SELECT t1.ifid AS ifid, t1.itemid AS itemid, t1.specid AS specid, t2.featid AS featid, t2.spec AS spec, t3.`description` AS `description`, t3.`catid` AS `catid`, t3.`qty` AS `qty`, t4.`location` AS `location`, t3.`bin` AS `bin` FROM itmspec AS t1 LEFT JOIN specs AS t2 ON t1.specid=t2.specid LEFT JOIN `item` AS t3 ON t1.itemid=t3.itemid LEFT JOIN `location` AS t4 ON t3.`location`=t4.`locid` WHERE featid=24 ORDER BY spec
 
 include 'inc_header.php';
 
@@ -10,14 +11,21 @@ $sql='SELECT `featid`, `feature`, `catid` '
 $data=$dl->sql($sql);
 
 foreach($data as $d_row){
-	$sql='SELECT `specid`, `spec`, `featid` FROM `specs` where `featid`='.$d_row['featid'];
+	$sql='SELECT `specid`, `spec`, `featid` FROM `specs` where `featid`='.$d_row['featid'].' ORDER BY `spec`';
 	$data_specs=$dl->sql($sql);
 	
 	$specs[$d_row['featid']]=$data_specs;
 }
 
-$sql='SELECT t1.`itemid` AS `itemid`, t1.`description` AS `description`, t1.`catid` AS `catid`, t1.`qty` AS `qty`, t2.`location` AS `location`, t1.`bin` AS `bin` '
-	.'FROM `item` AS t1 '
+$sql='SELECT t1.`itemid` AS `itemid`, t1.`description` AS `description`, t1.`catid` AS `catid`, t1.`qty` AS `qty`, t2.`location` AS `location`, t1.`bin` AS `bin` ';
+
+//$i=0;
+//foreach($data as $d_row){
+//	$i++;
+//	$select=$select.', t'.$i+1.'.spec AS spec'.$i.' ';
+//}
+
+$sql=$sql.'FROM `item` AS t1 '
 	.'LEFT JOIN `location` AS t2 ON t1.`location`=t2.`locid` '
 	.'WHERE ';
 
