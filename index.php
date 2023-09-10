@@ -5,6 +5,7 @@ include 'inc_header.php';
 $mode=gRequest('mode',0);
 $parent=gRequest('parent',0);
 $cat=gRequest('cat',"");
+$id=gRequest('id',0);
 
 if($mode==1){
 	if($cat>""){
@@ -15,6 +16,17 @@ if($mode==1){
 
 $tree=getchildren(0, $dbserver, $dbusername, $dbpasswd, $dbname, $debug);
 
+if($id>0){
+	$lastid=$id;
+	do{
+		$sql='SELECT * FROM `category` WHERE `catid`='.$lastid;
+		$crumb=$dl->sql($sql);
+		$crumbs[]=$crumb[0]['catid'];
+		$lastid=$crumb[0]['parent'];
+	}while ($lastid>0);
+}
+
+$smarty->assign('id', $crumbs);
 $smarty->assign('mode', $mode);
 $smarty->assign('data', $tree);
 $smarty->display('index.tpl');

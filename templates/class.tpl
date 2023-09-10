@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-<h3>{foreach $crumbs|@array_reverse:true as $row name=crumbs}{$row.cat}{if $smarty.foreach.crumbs.last}{else} - {/if}{/foreach}</h3>
+<h3>{foreach $crumbs|@array_reverse:true as $row name=crumbs}{if $smarty.foreach.crumbs.last}{$row.cat}{else}<a href="index.php?id={$row.catid}">{$row.cat}</a>{/if}{if $smarty.foreach.crumbs.last}{else} - {/if}{/foreach}</h3>
 <div class='w3-card-4 w3-white w3-padding'>
 <form method="get"><input type="hidden" name="id" value="{$id}">
 <table class='w3-table-all'>

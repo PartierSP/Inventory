@@ -5,7 +5,7 @@
 {foreach $data as $row name=mainloop}
 <li>
 	{if ($row.children[0].catid>0) or ($mode eq 1)}
-		<span class="caret"></span>
+		<span class="caret{if in_array($row.catid, $id)} caret-down{/if}"></span>
 	{/if}
 	{if ($row.children[0].catid<1) and ($mode eq 1)}
 		<a href="feature.php?catid={$row.catid}">
@@ -15,12 +15,12 @@
 		</a>
 	{/if}
 	{if ($row.children[0].catid>0) or ($mode eq 1)}
-		<ul class="nested">
+		<ul class="nested{if in_array($row.catid, $id)} active{/if}">
 		{if $mode eq 1}
 			<form method="get">&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="parent" value="{$row.catid}"><input type="hidden" name="mode" value="1"><input type="text" name="cat"><input type="submit" value="New"></form>
 		{/if}
 		{if $row.children[0].catid>0}
-			{include file="child.tpl" data=$row.children mode=$mode}
+			{include file="child.tpl" data=$row.children mode=$mode id=$id}
 		{/if}
 		</ul>
 	{/if}
