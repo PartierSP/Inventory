@@ -28,4 +28,8 @@
 {/foreach}
 </div>
 
+<div class='w3-card-4 w3-white w3-padding'>
+	<a href="binlabel.php?loc={$item.location}&bin={$item.bin}" class="w3-button w3-blue w3-round">Print Bin Label</a>
+</div>
+
 {include file="footer.tpl"}
