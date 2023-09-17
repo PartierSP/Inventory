@@ -1,6 +1,7 @@
 {include file="header.tpl"}
 
 <div class='w3-card-4 w3-white w3-padding'>
+<h2>{$list[0][0]['location']} - Bin {$list[0][0]['bin']}</h2>
 {foreach $structure as $table name=tableloop}
 <h3>{$table[0]['cat']}</h3>
 <table class='w3-table-all'>
@@ -10,8 +11,6 @@
 		<th>{$row.feature}</th>
 	{/foreach}
 	<th>Qty</th>
-	<th>Location</th>
-	<th>Bin</th>
 </tr>
 {foreach $list[$smarty.foreach.tableloop.index] as $row name=listloop}
 <tr>
@@ -20,8 +19,6 @@
 		<td>{$il[$smarty.foreach.tableloop.index][$smarty.foreach.listloop.index][$d_row.featid]['spec']}</td>
 	{/foreach}
 	<td>{$row.qty}</td>
-	<td>{$row.location}</td>
-	<td>{$row.bin}</td>
 </tr>
 {/foreach}
 </table>
