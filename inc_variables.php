@@ -1,6 +1,6 @@
 <?php
 
 	$debug=false;							//Enable or disable database debug mode 
-	$serveraddress='http://127.0.0.1/i/';		//Inventory system address for use with QR Codes.
+	$serveraddress='http://192.168.1.11/i/';		//Inventory system address for use with QR Codes.
 
 ?>

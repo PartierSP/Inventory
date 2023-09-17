@@ -29,7 +29,7 @@
 </div>
 
 <div class='w3-card-4 w3-white w3-padding'>
-	<a href="binlabel.php?loc={$item.location}&bin={$item.bin}" class="w3-button w3-blue w3-round">Print Bin Label</a>
+	<a href="binlabel.php?s=0&l={$list[0][0]['locid']}&b={$list[0][0]['bin']}" class="w3-button w3-blue w3-round">Small Bin Label</a> <a href="binlabel.php?s=1&l={$list[0][0]['locid']}&b={$list[0][0]['bin']}" class="w3-button w3-blue w3-round">Med Bin Label</a>
 </div>
 
 {include file="footer.tpl"}

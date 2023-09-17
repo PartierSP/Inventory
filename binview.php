@@ -1,8 +1,10 @@
 <?php
 include 'inc_header.php';
 
-$loc=gRequest('loc',0);
-$bin=gRequest('bin',0);
+$loc=gRequest('l',0);
+$bin=gRequest('b',0);
+$loc=gRequest('loc',$loc);
+$bin=gRequest('bin',$bin);
 
 $sql='SELECT `catid`, `location`, `bin` FROM `item` WHERE `location`='.$loc.' AND `bin`='.$bin.' GROUP BY `catid`';
 $catids=$dl->sql($sql);
@@ -14,7 +16,7 @@ foreach($catids as $d_row){
 		.'WHERE t1.`catid`='.$d_row['catid'];
 	$structure[]=$dl->sql($sql);
 	
-	$sql='SELECT t1.`itemid` AS `itemid`, t1.`description` AS `description`, t1.`catid` AS `catid`, t1.`qty` AS `qty`, t2.`location` AS `location`, t1.`bin` AS `bin` '
+	$sql='SELECT t1.`itemid` AS `itemid`, t1.`description` AS `description`, t1.`catid` AS `catid`, t1.`qty` AS `qty`, t2.`location` AS `location`, t1.`bin` AS `bin`, t1.`location` AS `locid` '
 		.'FROM `item` AS t1 '
 		.'LEFT JOIN `location` AS t2 ON t1.`location`=t2.`locid` '
 		.'WHERE `catid`='.$d_row['catid'].' AND t1.`location`='.$loc.' AND `bin`='.$bin;
