@@ -29,6 +29,15 @@
 
 </ul>
 </div>
+<br>
+<h3>Locations</h3>
+<div class="w3-centered w3-card-4 w3-white w3-padding">
+<li class='w3-ul'>
+{foreach $locations as $location}
+<ul><a href='loc.php?locid={$location.locid}'>{$location.location}</a></ul>
+{/foreach}
+</li>
+</div>
 
 <script src="list.js"></script>
 {include file="footer.tpl"}

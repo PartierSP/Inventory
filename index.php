@@ -26,9 +26,17 @@ if($id>0){
 	}while ($lastid>0);
 }
 
+$sql='SELECT t1.`location` AS `locid`, t2.`location` AS `location` '
+	.'FROM `item` AS t1 '
+	.'LEFT JOIN `location` AS t2 ON t1.`location`=t2.`locid` '
+	.'GROUP BY t1.`location` '
+	.'ORDER BY t2.`location`';
+$locations=$dl->sql($sql);
+
 $smarty->assign('id', $crumbs);
 $smarty->assign('mode', $mode);
 $smarty->assign('data', $tree);
+$smarty->assign('locations', $locations);
 $smarty->display('index.tpl');
 
 //\\//\\//\\//\\//\\//\\//\\//\\//\\
