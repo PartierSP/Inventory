@@ -59,7 +59,7 @@ function qr2hpgl($text,$qrsize,$xpos,$ypos,$pensize){
 	//$pensize = Pen width in millimeters
 
 	//Use 'qrencode' to generate the code
-	exec('qrencode -t ascii "'.$text.'"',$out);
+	exec('qrencode -l M -t ascii "'.$text.'"',$out);
 
 	//Convert each line into sub arrays
 	foreach($out as $t){
