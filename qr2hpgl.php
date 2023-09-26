@@ -30,7 +30,7 @@ function pltsmlabel($link, $text, $xpos, $ypos){
 	echo('PU;SP0;PG;');
 }
 
-function pltlglabel($link, $text, $col, $row){
+function pltlglabel($link, $bin, $location, $details, $col, $row){
 
 	//Calc label starting position
 	$xpos=$col*4000+($col*170)+64;
@@ -41,10 +41,12 @@ function pltlglabel($link, $text, $col, $row){
 
 	//Position for QR code print code
 	echo('PA'.($xpos+380).','.($ypos+380).';');
-	qr2hpgl($link,31.5,($xpos+380)/40,($ypos+380)/40,0.7);
+	qr2hpgl($link,34,($xpos+336)/40,($ypos+336)/40,0.7);
 	
 	//Draw text
-	echo('SP2;PA'.($xpos+2100).','.($ypos+1500).';TD0;DT~;SD1,21,2,1,4,12,5,0,6,3,7,51;SS;LB'.$text.'~;');
+	echo('SP2;PA'.($xpos+2000).','.($ypos+1500).';TD0;DT~;SD1,21,2,1,4,18,5,0,6,3,7,51;SS;LB'.$bin.'~;');
+	echo('SP2;PA'.($xpos+2000).','.($ypos+1350).';TD0;DT~;SD1,21,2,1,4,10,5,0,6,3,7,51;SS;LB'.$location.'~;');
+	echo('SP2;PA'.($xpos+2000).','.($ypos+1200).';TD0;DT~;SD1,21,2,1,4,8,5,0,6,3,7,51;SS;LB'.$details.'~;');
 
 	//Put pen away and eject plot
 	//echo('PU;SP0;PG;');
