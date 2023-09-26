@@ -15,13 +15,13 @@
 	$categories=$dl->sql($sql);
 	
 	foreach($categories as $cat){
-		$details.=$cat['cat']."\n";
+		$details.=$cat['cat']."\r\n";
 	}
-	$location=$categories[0]['loc'];
+	$loc=$categories[0]['loc'];
 	
 	$bintxt='Bin:  '.$bin;
 	
 	//pagetest();
 	//pltsmlabel($serveraddress.'binview.php?l='.$location.'&b='.$bin, $bin, 200, 0);
-	pltlglabel($serveraddress.'binview.php?l='.$location.'&b='.$bin, $bintxt, $location, $details, 0, 4);
+	pltlglabel($serveraddress.'binview.php?l='.$location.'&b='.$bin, $bintxt, $loc, $details, 0, 4);
 ?>
