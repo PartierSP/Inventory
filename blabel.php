@@ -2,7 +2,7 @@
 	include('inc_header.php');
 	include('qr2hpgl.php');
 	
-	$lablesize=gRequest('s',0);
+	$size=gRequest('s',0);
 	$location=gRequest('l',0);
 	$bin=gRequest('b',0);
 	$row=gRequest('row',0);
@@ -31,8 +31,10 @@
 		
 		$bintxt='Bin:  '.$bin;
 		
-		//pagetest();
-		//pltsmlabel($serveraddress.'binview.php?l='.$location.'&b='.$bin, $bin, 200, 0);
-		pltlglabel($serveraddress.'binview.php?l='.$location.'&b='.$bin, $bintxt, $loc, $details, $col-1, 5-$row);
+		if ($size==1){
+			pltsmlabel($serveraddress.'binview.php?l='.$location.'&b='.$bin, $bin, 200, 0);
+		}else{
+			pltlglabel($serveraddress.'binview.php?l='.$location.'&b='.$bin, $bintxt, $loc, $details, $col-1, 5-$row);
+		}
 	}
 ?>
