@@ -2,7 +2,7 @@
 
 function pagetest(){
 	//Initialize Plotter
-//	echo('IN;IP;RO90;VS;PU;SP2;');
+	echo('IN;IP;RO90;VS;PU;SP2;');
 	//Draw border and two vertical lines using pen 2
 	echo('SP3;');
 	for($i=1;$i<5;$i++){
@@ -44,13 +44,12 @@ function pltlglabel($link, $bin, $location, $details, $col, $row){
 	qr2hpgl($link,34,($xpos+336)/40,($ypos+336)/40,0.7);
 	
 	//Draw text
-	echo('SP2;SI;PA'.($xpos+2000).','.($ypos+1500).';TD0;DT~;SD1,21,2,1,4,18,5,0,6,3,7,51;SS;LB'.$bin.'~;');
-	echo('SP2;SI;PA'.($xpos+2000).','.($ypos+1350).';TD0;DT~;SD1,21,2,1,4,10,5,0,6,3,7,51;SS;LB'.$location.'~;');
-	echo('SP2;SI;PA'.($xpos+2000).','.($ypos+1200).';TD0;DT~;SD1,21,2,1,4,8,5,0,6,3,7,51;SS;LB'.$details.'~;');
+	echo('SP2;SI;PA'.($xpos+2000).','.($ypos+1500).';TD0;DT~;SD1,21,2,1,4,18,5,0,6,3,7,51;SS;LBBin: '.$bin.'~;');
+	echo('SP3;SI;PA'.($xpos+2000).','.($ypos+1350).';TD0;DT~;SD1,21,2,1,4,10,5,0,6,3,7,51;SS;LB'.$location.'~;');
+	echo('SP3;SI;PA'.($xpos+2000).','.($ypos+1200).';TD0;DT~;SD1,21,2,1,4,8,5,0,6,3,7,51;SS;LB'.$details.'~;');
 
 	//Put pen away and eject plot
-	//echo('PU;SP0;PG;');
-	pagetest();
+	echo('PU;SP0;PG;');
 }
 
 function qr2hpgl($text,$qrsize,$xpos,$ypos,$pensize){

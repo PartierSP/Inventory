@@ -29,12 +29,10 @@
 		}
 		$loc=$categories[0]['loc'];
 		
-		$bintxt='Bin:  '.$bin;
-		
 		if ($size==1){
 			pltsmlabel($serveraddress.'binview.php?l='.$location.'&b='.$bin, $bin, 200, 0);
 		}else{
-			pltlglabel($serveraddress.'binview.php?l='.$location.'&b='.$bin, $bintxt, $loc, $details, $col-1, 5-$row);
+			pltlglabel($serveraddress.'binview.php?l='.$location.'&b='.$bin, $bin, $loc, $details, $col-1, 5-$row);
 		}
 	}
 ?>
