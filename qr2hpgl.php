@@ -39,15 +39,15 @@ function pltlglabel($link, $bin, $location, $details, $col, $row){
 	//Initialize Plotter
 	echo('IN;IP;RO90;VS;PU;SP1;');
 
-	//Position for QR code print code
-	echo('PA'.($xpos+380).','.($ypos+380).';');
-	qr2hpgl($link,34,($xpos+336)/40,($ypos+336)/40,0.7);
-	
 	//Draw text
 	echo('SP2;SI;PA'.($xpos+2000).','.($ypos+1500).';TD0;DT~;SD1,21,2,1,4,18,5,0,6,3,7,51;SS;LBBin: '.$bin.'~;');
 	echo('SP3;SI;PA'.($xpos+2000).','.($ypos+1350).';TD0;DT~;SD1,21,2,1,4,10,5,0,6,3,7,51;SS;LB'.$location.'~;');
 	echo('SP3;SI;PA'.($xpos+2000).','.($ypos+1200).';TD0;DT~;SD1,21,2,1,4,8,5,0,6,3,7,51;SS;LB'.$details.'~;');
 
+	//Position for QR code print code
+	echo('PA'.($xpos+380).','.($ypos+380).';');
+	qr2hpgl($link,34,($xpos+336)/40,($ypos+336)/40,0.7);
+	
 	//Put pen away and eject plot
 	echo('PU;SP0;PG;');
 }
@@ -84,7 +84,6 @@ function qr2hpgl($text,$qrsize,$xpos,$ypos,$pensize){
 
 	//Scan each row of the QR code and draw horizantal lines where needed
 	$row=0;
-	$colmax=0;
 	foreach($qr as $line){
 		//Repeat each row with pen width offsets to fill in better
 		$i=0;
@@ -110,9 +109,6 @@ function qr2hpgl($text,$qrsize,$xpos,$ypos,$pensize){
 			if($last==true){
 				echo((int)($xscale*$col+$xoffset-$xshift).','.(int)($yscale*($row+($i/$linerepeat))+$yoffset).';PU');
 				$last=false;
-			}
-			if($col>$colmax){
-				$colmax=$col;
 			}
 			$i++;
 		}
