@@ -1,6 +1,6 @@
 <?php
 
-	$debug=false;							//Enable or disable database debug mode 
-	$serveraddress='http://s.lan/i/';		//Inventory system address for use with QR Codes.
+	$debug=false;					//Enable or disable database debug mode 
+	$serveraddress='http://pi.lan/i/';		//Inventory system address for use with QR Codes.
 
 ?>

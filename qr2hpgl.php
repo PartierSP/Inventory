@@ -41,11 +41,11 @@ function pltlglabel($link, $bin, $location, $details, $col, $row){
 
 	//Draw text
 	echo('SP2;SI;PA'.($xpos+2000).','.($ypos+1500).';TD0;DT~;SD1,21,2,1,4,18,5,0,6,3,7,51;SS;LBBin: '.$bin.'~;');
+	echo('SP2;SI;PA'.($xpos+2000).','.($ypos+1200).';TD0;DT~;SD1,21,2,1,4,8,5,0,6,3,7,51;SS;LB'.$details.'~;');
 	echo('SP3;SI;PA'.($xpos+2000).','.($ypos+1350).';TD0;DT~;SD1,21,2,1,4,10,5,0,6,3,7,51;SS;LB'.$location.'~;');
-	echo('SP3;SI;PA'.($xpos+2000).','.($ypos+1200).';TD0;DT~;SD1,21,2,1,4,8,5,0,6,3,7,51;SS;LB'.$details.'~;');
 
-	//Position for QR code print code
-	echo('PA'.($xpos+380).','.($ypos+380).';');
+	//Change pen and position for QR code print code
+	echo('SP1;PA'.($xpos+380).','.($ypos+380).';');
 	qr2hpgl($link,34,($xpos+336)/40,($ypos+336)/40,0.7);
 	
 	//Put pen away and eject plot
