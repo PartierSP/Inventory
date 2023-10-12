@@ -68,7 +68,7 @@
 <div class="w3-card-4 w3-white w3-padding">
 	<p>After selecting which label to print, open a terminal navigate to your Downloads directory.  Then run the following commands to send the label to the plotter.  The first line is only required once per session.</p>
 	<div class="w3-code w3-black">stty -F /dev/ttyUSB0 9600 -crtscts ixon ixoff</div>
-	<div class="w3-code w3-black">cat label.hpgl > /dev/ttyUSB0 & rm label.hpgl</div>
+	<div class="w3-code w3-black">cat label.hpgl > /dev/ttyUSB0 && rm label.hpgl</div>
 </div>
 <p></p>
 {include file="footer.tpl"}
