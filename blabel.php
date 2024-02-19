@@ -29,10 +29,19 @@
 		}
 		$loc=$categories[0]['loc'];
 		
-		if ($size==1){
-			pltsmlabel($serveraddress.'binview.php?l='.$location.'&b='.$bin, $bin, 200, 0);
-		}else{
-			pltlglabel($serveraddress.'binview.php?l='.$location.'&b='.$bin, $bin, $loc, $details, $col-1, 5-$row);
+		Switch($size){
+			case 0:
+				//Size Large
+				pltlglabel($serveraddress.'binview.php?l='.$location.'&b='.$bin, $bin, $loc, $details, $col-1, 5-$row);
+				break;
+			case 1:
+				//Size Small
+				pltsmlabel($serveraddress.'binview.php?l='.$location.'&b='.$bin, $bin, 200, 0);
+				break;
+			case 2:
+				//Size Tiny
+				plttnylabel($serveraddress.'binview.php?l='.$location.'&b='.$bin, $bin, 200,0);
+				break;
 		}
 	}
 ?>

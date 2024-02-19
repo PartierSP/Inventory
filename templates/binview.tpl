@@ -24,9 +24,13 @@
 </table>
 {/foreach}
 </div>
-
+<p></p>
 <div class='w3-card-4 w3-white w3-padding'>
-	<a href="binlabel.php?s=0&l={$list[0][0]['locid']}&b={$list[0][0]['bin']}" class="w3-button w3-blue w3-round">Small Bin Label</a> <a href="binlabel.php?s=1&l={$list[0][0]['locid']}&b={$list[0][0]['bin']}" class="w3-button w3-blue w3-round">Med Bin Label</a> <a href="blabel.php?s=1&l={$list[0][0]['locid']}&b={$list[0][0]['bin']}" class="w3-button w3-blue w3-round">Plot Small Label</a> <a href="blabel.php?s=0&l={$list[0][0]['locid']}&b={$list[0][0]['bin']}" class="w3-button w3-blue w3-round">Plot Large Label</a>
+	<h4>Print via PDF <a href="binlabel.php?s=0&l={$list[0][0]['locid']}&b={$list[0][0]['bin']}" class="w3-button w3-blue w3-round">Small Bin Label</a> <a href="binlabel.php?s=1&l={$list[0][0]['locid']}&b={$list[0][0]['bin']}" class="w3-button w3-blue w3-round">Med Bin Label</a></h4>
 </div>
-
+<p></p>
+<div class='w3-card-4 w3-white w3-padding'>
+		<h4>Print via Plotter <a href="blabel.php?s=2&l={$list[0][0]['locid']}&b={$list[0][0]['bin']}" class="w3-button w3-blue w3-round">Plot Tiny Label</a> <a href="blabel.php?s=1&l={$list[0][0]['locid']}&b={$list[0][0]['bin']}" class="w3-button w3-blue w3-round">Plot Small Label</a> <a href="blabel.php?s=0&l={$list[0][0]['locid']}&b={$list[0][0]['bin']}" class="w3-button w3-blue w3-round">Plot Large Label</a></h4>
+</div>
+<p></p>
 {include file="footer.tpl"}

@@ -16,6 +16,20 @@ function pagetest(){
 	echo('PU;SP0;PG;');
 }
 
+function plttnylabel($link, $text, $xpos, $ypos){
+	//Initialize Plotter
+	echo('IN;IP;R090;VS;PU;');
+	//Draw border and two vertical lines using pen 2
+	echo('SP2;PA'.$xpos.','.$ypos.';EA'.($xpos+1270).','.($ypos+560).';PA'.($xpos+1110).','.($ypos+560).';PD'.($xpos+1110).','.$ypos.';PU'.($xpos+160).','.($ypos+560).';PD'.($xpos+160).','.$ypos.';PU;');
+	//Draw text label
+	echo('PA'.($xpos+800).','.($ypos+180).';TD0;DT~;SD1,21,2,1,4,12,5,0,6,3,7,51;SS;LB'.$text.'~;');
+	//Position for QR code and select pen 1
+	echo('PU'.($xpos+200).','.$ypos.';SP1;');
+	qr2hpgl($link,13.5,($xpos+200)/40,($ypos+10)/40,0.7);
+	//Put pen away and end plot
+	echo('PU;SP0;PG;');
+}
+
 function pltsmlabel($link, $text, $xpos, $ypos){
 	//Initialize Plotter
 	echo('IN;IP;RO90;VS;PU;');
