@@ -15,6 +15,7 @@ if(($catid==0 || $itemid==0) && $new==0){
 	}else{
 		$smarty->assign('fault',0);
 		$smarty->display('search.tpl');
+		exit();
 	}
 }
 
