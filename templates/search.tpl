@@ -12,12 +12,12 @@
 	</p>
 </form>
 </div>
-{if $fault=1}
+{if $fault==1}
 <div class="w3-panel w3-yellow w3-border w3-center">
 	<h3>Warning</h3>
 	<p>Invalid Inventory ID specified.  Please try again.</p>
 </div>
-{elseif $fault=2}
+{elseif $fault==2}
 <div class="w3-panel w3-yellow w3-border w3-center">
 	<h3>Warning</h3>
 	<p>No inventory item found.  Please try a different Inventory ID number.</p>

@@ -50,7 +50,7 @@
 {/foreach}
 </table>
 <p>
-<a href="item.php?catid={$id}" class="w3-button w3-blue w3-round">Add New Item</a>
+<a href="item.php?catid={$id}&n=1" class="w3-button w3-blue w3-round">Add New Item</a>
 </p>
 </div>
 {include file="footer.tpl"}

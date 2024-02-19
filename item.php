@@ -7,7 +7,7 @@ $new=gRequest('n',0);
 $itemid=gRequest('itemid',0);
 $search=gRequest('search','');
 
-if($catid==0 || $itemid==0){
+if(($catid==0 || $itemid==0) && $new==0){
 	if($search>''){
 		$sch=preg_split("/[\s,.-]+/",$search);
 		$catid=$sch[0];
@@ -18,7 +18,7 @@ if($catid==0 || $itemid==0){
 	}
 }
 
-if($catid<>0 && $itemid<>0){
+if(($new==1 && $catid>0) || ($catid<>0 && $itemid<>0)){
 	$sql='SELECT `featid`, `feature`, `catid`, 0 AS `selected` '
 		.'FROM `features` '
 		.'WHERE `catid`='.$catid;
@@ -111,7 +111,7 @@ if($catid<>0 && $itemid<>0){
 		$locations=$data3;
 	}
 
-	if(sizeof($data)>0 && sizeof($item[0])>0){
+	if((sizeof($data)>0 && sizeof($item[0])>0) || $new==1){
 		$smarty->assign('data',$data);
 		$smarty->assign('specs',$specs);
 		$smarty->assign('locations',$locations);
