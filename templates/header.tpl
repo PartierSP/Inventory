@@ -10,6 +10,7 @@
 	<button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
 	<h4>Main</h4>
 	<a href="index.php" class="w3-bar-item w3-button">Home</a>
+	<a href="item.php" class="w3-bar-item w3-button">Inv. ID Look-up</a>
 	<h4>Administration</h4>
 	<a href="index.php?mode=1" class="w3-bar-item w3-button">Categories/Features</a>
 </div>
