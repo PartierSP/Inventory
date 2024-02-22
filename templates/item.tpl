@@ -42,8 +42,8 @@
 </table>
 <div class="w3-row w3-padding">
 	<div class="w3-half w3-container">
-		{if $itemid>0}<input type="hidden" name="itemid" value="{$itemid}">
-		<input type="hidden" name="new" value="1">{/if}
+		{if $itemid>0}<input type="hidden" name="itemid" value="{$itemid}">{else}
+		<input type="hidden" name="n" value="1">{/if}
 		<button type="submit" class="w3-button w3-blue w3-round">{if $itemid>0}Update{else}Add New{/if} Item</button>
 		{if $itemid>0}<a href="binview.php?loc={$item.location}&bin={$item.bin}" class="w3-button w3-blue w3-round">View Bin</a>{/if}
 	</div>
