@@ -19,7 +19,7 @@ if(($catid==0 || $itemid==0) && $new==0){
 	}
 }
 
-if(($new==1 && $catid>0) || ($catid<>0 && $itemid<>0)){
+if(($new<>0 && $catid>0) || ($catid<>0 && $itemid<>0)){
 	$sql='SELECT `featid`, `feature`, `catid`, 0 AS `selected` '
 		.'FROM `features` '
 		.'WHERE `catid`='.$catid;
@@ -40,6 +40,7 @@ if(($new==1 && $catid>0) || ($catid<>0 && $itemid<>0)){
 		$insertarray=array('description'=>$desc,'catid'=>$catid,'qty'=>$qty,'location'=>$location,'bin'=>intval($bin));
 		if($itemid==0){
 			$newitemid=$dl->insert('item',$insertarray);
+			$itemid=$newitemid;
 		}else{
 			$t=$dl->update('item',$insertarray,'itemid='.$itemid);
 			$newitemid=$itemid;
@@ -112,7 +113,7 @@ if(($new==1 && $catid>0) || ($catid<>0 && $itemid<>0)){
 		$locations=$data3;
 	}
 
-	if((sizeof($data)>0 && sizeof($item[0])>0) || $new==1){
+	if((sizeof($data)>0 && sizeof($item[0])>0) || $new<>0){
 		$smarty->assign('data',$data);
 		$smarty->assign('specs',$specs);
 		$smarty->assign('locations',$locations);
