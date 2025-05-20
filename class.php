@@ -91,7 +91,7 @@ $smarty->assign('specs',$specs);
 $smarty->assign('list',$list);
 $smarty->assign('itemlist',$itemlist);
 $smarty->assign('ilcount', count($itemlist));
-$smarty->assign('crumbs',$crumbs);
+$smarty->assign('crumbs',array_reverse($crumbs));
 $smarty->assign('cbv', $cbv);
 $smarty->assign('id',$id);
 $smarty->display('class.tpl');
