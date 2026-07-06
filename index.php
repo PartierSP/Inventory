@@ -7,6 +7,8 @@ $parent=gRequest('parent',0);
 $cat=gRequest('cat',"");
 $id=gRequest('id',0);
 
+$crumbs=[];
+
 if($mode==1){
 	if($cat>""){
 		$insert=array('cat'=>$cat,'parent'=>$parent);
@@ -43,6 +45,8 @@ $smarty->display('index.tpl');
 
 function getchildren($parent, $dbserver, $dbusername, $dbpasswd, $dbname, $debug){
 
+	$tree=[];
+
 	$dl=new DataLayer();
 	$dl->connect($dbserver, $dbusername, $dbpasswd, $dbname) or die($dl->geterror());
 	$dl->debug=$debug;
@@ -52,7 +56,7 @@ function getchildren($parent, $dbserver, $dbusername, $dbpasswd, $dbname, $debug
 
 	foreach($results as $row){
 		$gen=getchildren($row['catid'], $dbserver, $dbusername, $dbpasswd, $dbname, $debug);
-		if(count($gen)<1){
+		if(!is_countable($gen)){
 			$gen='---';
 		}
 		$tree[]=array('catid'=>$row['catid'],'cat'=>$row['cat'],'parent'=>$row['parent'],'children'=>$gen);
