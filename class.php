@@ -3,6 +3,8 @@
 
 include 'inc_header.php';
 
+$itemlist=[];
+
 $id=gRequest('id',0);
 
 $sql='SELECT `featid`, `feature`, `catid` '

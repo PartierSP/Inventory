@@ -113,7 +113,7 @@ if(($new<>0 && $catid>0) || ($catid<>0 && $itemid<>0)){
 		$locations=$data3;
 	}
 
-	if((sizeof($data)>0 && sizeof($item[0])>0) || $new<>0){
+	if((is_countable($data) && is_countable($item[0])) || $new<>0){
 		$smarty->assign('data',$data);
 		$smarty->assign('specs',$specs);
 		$smarty->assign('locations',$locations);
