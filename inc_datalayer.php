@@ -101,8 +101,8 @@ class datalayer {
 
 	function insert($table, $add_array) {
 		$add_array = $this->_quote_vals($add_array);
-		$keys = '(`' .implode(array_keys($add_array), '`, `').'`)';
-		$values = 'VALUES (' .implode(array_values($add_array), ', ') .')';
+		$keys = '(`' .implode('`, `', array_keys($add_array)).'`)';
+		$values = 'VALUES (' .implode(', ', array_values($add_array)) .')';
 		$query = 'INSERT INTO '.$table.' '.$keys.' '.$values;
 		$this->isinsert = true;
 		$this->debug($query);
